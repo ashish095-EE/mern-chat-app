@@ -1,5 +1,7 @@
  import User from "../models/userModels.js";
  import bcrypt from "bcryptjs";
+
+ import generateTokenAndSetCookie from "../utils/generateToken.js"
  
  export const signup = async (req,res)=>{
 
@@ -36,6 +38,12 @@
          profilePic: gender==="male"? boyProfilePic : girlProfilePic
       });
 
+     if(newUser){
+
+      generateTokenAndSetCookie(newUser._id,res);
+
+
+      //generate JWt Token
       await newUser.save();
       res.status(201).json({
          _id: newUser._id,
@@ -44,7 +52,11 @@
          fullName: newUser.fullName,
          profilePic: newUser.profilePic,
          
-      })
+      });
+     }
+     else{
+      res.status(400).json({error:"Failed to create user"});
+     }
       
    } catch (error) {
       console.error(error);
@@ -54,10 +66,42 @@
     
  }
 
- export const login = (req,res)=>{
-    res.send('loginUser');
+ export const login = async (req,res)=>{
+    try {
+      const {userName, password} = req.body;
+      const user =  await User.findOne({userName})
+
+      const isPasswordCorrect = await bcrypt.compare(password,user?.password|| "");
+      if(!isPasswordCorrect || !user){
+         return res.status(400).json({error: "Invalid credentials"});
+      }
+
+      generateTokenAndSetCookie(user._id,res);
+      res.json({
+         _id: user._id,
+         userName: user.userName,
+         fullName: user.fullName,
+         profilePic: user.profilePic
+      });
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({error: "Login error"});
+      
+      
+ 
+   }
  }
 
  export const logout = (req,res)=>{
-    res.send('logoutUser');
+    try {
+      res.cookie("jwt","",{maxAge:0})
+      res.json({message: "Logged out sucessfully"});
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({error: "Login error"});
+      
+      
+ 
+   }
  }
