@@ -26,12 +26,19 @@ export const sendMessage = async (req, res, next) => {
             message, // the actual message content
         });
 
-        // Save the new message
-        await newMessage.save();
+        
+        
 
         // Add the message to the conversation
-        conversation.messages.push(newMessage._id);
-        await conversation.save(); // Save the conversation with the new message
+        if(newMessage){
+            conversation.messages.push(newMessage._id);
+
+        }
+
+        //socket io functionality
+        
+        await Promise.all([conversation.save(),newMessage.save()]);//runs parallely no delay in between
+        
 
         res.status(201).json(newMessage); // Return the newly created message
     } catch (error) {
