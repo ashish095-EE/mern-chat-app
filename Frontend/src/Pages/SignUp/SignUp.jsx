@@ -56,7 +56,7 @@ const SignUp = () => {
 
                  </div>
                  <div className="mt-2">
-                    <p >Already a Yapper? <span className="font-semibold cursor-pointer hover:font-bold hover:text-black">Login</span></p>
+                    <p >Already a Yapper? <span className="font-semibold cursor-pointer hover:font-bold hover:text-white">Login</span></p>
                  </div>
 
                 

@@ -33,7 +33,7 @@ const Login = () => {
 
                  </div>
                  <div className="mt-2">
-                    <p >Not a Yapper yet? <span className="font-semibold cursor-pointer hover:font-bold hover:text-black">SignUp..</span></p>
+                    <p >Not a Yapper yet? <span className="font-semibold cursor-pointer hover:font-bold hover:text-white">SignUp..</span></p>
                  </div>
 
                 
