@@ -32,8 +32,7 @@
          fullName,
          userName,
          password:hashedPasswords,
-         confirmPassword:hashedPasswords,
-         
+         confirmPassword: hashedPasswords,
          gender,
          profilePic: gender==="male"? boyProfilePic : girlProfilePic
       });

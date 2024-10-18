@@ -7,13 +7,16 @@ import userRoutes from './routes/user.routes.js';
 import connectToMongoDB from './db/connectToMongoDB.js';
 import cookieParser from 'cookie-parser';
 
+ 
 
 
 const app = express();
+
 const PORT =  process.env.PORT||5000;
 dotenv.config(); //load environment variables from.env file
 
 app.use(express.json());
+
 app.use(cookieParser());
 
 // app.get('/', (req, res) => {

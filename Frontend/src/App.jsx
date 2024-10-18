@@ -1,9 +1,10 @@
 
 import './App.css'
 import Login from './Pages/Login/login.jsx'
-import SignUp from './Pages/SignUp/signup.jsx'
+import SignUp from './Pages/SignUp/SignUp.jsx'
 import Home from './Pages/Home/home.jsx'
 import { Route, Routes } from 'react-router-dom'
+import { Toaster } from'react-hot-toast'
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
         <Route path='/signup' element={<SignUp/> } />
 
       </Routes>
+      <Toaster/>
 
       
 
