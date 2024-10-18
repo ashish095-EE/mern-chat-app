@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -33,7 +34,7 @@ const Login = () => {
 
                  </div>
                  <div className="mt-2">
-                    <p >Not a Yapper yet? <span className="font-semibold cursor-pointer hover:font-bold hover:text-white">SignUp..</span></p>
+                    <p >Not a Yapper yet? <Link to={'/signup'} className="font-semibold cursor-pointer hover:font-bold hover:text-white">SignUp..</Link></p>
                  </div>
 
                 
