@@ -56,7 +56,13 @@ export const getMessage = async (req, res) => {
             participants: { $all: [senderId, userToChat] },
         }).populate("messages");//not refrence actual messages
 
-        res.status(200).json(conversation.messages );
+        if(!conversation) return res.status(200).json([]); //after make sure to check if no conversation exist between the client and reicever then missing this throws error when get message it searches and finds null and goves iNternal server error
+
+        const messages = conversation.messages;
+        res.status(200).json(messages);
+
+
+        
         
     } catch (error) {
         console.error(error);

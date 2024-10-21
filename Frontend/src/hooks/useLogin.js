@@ -5,6 +5,7 @@ import { useAuthContext } from "../Context/AuthContext";
 const useLogin = () => {
     const[loading,setLoading] = useState(false);
     const{setAuthUser} = useAuthContext();
+    
 
     const login = async ({ userName, password }) => {
         const success = handelInputError({userName, password});
@@ -18,19 +19,25 @@ const useLogin = () => {
                 body: JSON.stringify({ userName, password }),
             });
             const data = await res.json();
+            
+            
+            
 
             if(data.error){
                 throw new Error(data.error)
             }
 
             localStorage.setItem("chat-user", JSON.stringify(data));
+            
             setAuthUser(data);
+            
+            
             toast.success("Login successful!");
 
 
             
         } catch (error) {
-            toast.error(error)
+            toast.error(error.message)
             
         } finally {
             setLoading(false);

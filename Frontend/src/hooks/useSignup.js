@@ -37,6 +37,8 @@ const useSignup = () => {
             //context update
 
             setAuthUser(data);
+            console.log(data);
+            
            
             
         } catch (error) {
