@@ -2,7 +2,9 @@ import {Server } from "socket.io";
 import http from "http";
 import express from "express";
 
-const app = express();
+const app = express(); //express server
+
+
 const server = http.createServer(app); //adding socket error on the express server
 const io = new Server(server ,{
     cors :{
